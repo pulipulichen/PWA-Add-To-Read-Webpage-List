@@ -26,8 +26,14 @@ postData(url, {
 })
  */
 
-var parsedUrl = new URL(window.location.toString());
-document.write('Title shared: ' + parsedUrl.searchParams.get('name') 
+
+
+window.addEventListener('load', () => {
+        const parsedUrl = new URL(window.location);
+        const { searchParams } = parsedUrl;
+        var parsedUrl = new URL(window.location.toString());
+        document.write('Title shared: ' + parsedUrl.searchParams.get('name') 
         + '\nText shared: ' + parsedUrl.searchParams.get('description')
         + '\nURL shared: ' + parsedUrl.searchParams.get('link'));
+      });
 
