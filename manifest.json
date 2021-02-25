@@ -2,19 +2,19 @@
   "name": "PWA-Add-To-Read-Webpage-List",
   "short_name": "ToReadWeb",
   "start_url": "./index.html",
-  "display": "standalone",
+  "display": "minimal-ui",
   "background_color": "#F1E2D3",
   "theme_color": "#A5673F",
   "description": "A PWA for sharing title and URL to AppSheet",
   "share_target": {
-      "method":"GET",
-      "action": "/index.html",
-      "params": {
-          "title": "title",
-          "text": "text",
-          "url": "url"
-      }
-  },
+        "method":"GET",
+        "action": "/?share_target",
+        "params": {
+            "title": "title",
+            "text": "text",
+            "url": "url"
+        }
+    },
   "icons": [{
    "src": "assets/favicon/generator/android-icon-36x36.png",
    "sizes": "36x36",
