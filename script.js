@@ -30,7 +30,7 @@ postData(url, {
 
 window.addEventListener('load', () => {
         var parsedUrl = new URL(window.location.toString());
-        document.write('Title shared: ' + parsedUrl.searchParams.get('name') 
+        window.alert('Title shared: ' + parsedUrl.searchParams.get('name') 
         + '\nText shared: ' + parsedUrl.searchParams.get('description')
         + '\nURL shared: ' + parsedUrl.searchParams.get('link'));
       });
