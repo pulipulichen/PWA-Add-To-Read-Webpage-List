@@ -25,3 +25,9 @@ postData(url, {
   url: 'https://blog.pulipuli.info'
 })
  */
+
+var parsedUrl = new URL(window.location.toString());
+document.write('Title shared: ' + parsedUrl.searchParams.get('name') 
+        + '\nText shared: ' + parsedUrl.searchParams.get('description')
+        + '\nURL shared: ' + parsedUrl.searchParams.get('link'));
+
