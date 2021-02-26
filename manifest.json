@@ -1,15 +1,15 @@
 {
-  "short_name": "Share",
-  "name": "Share Target Test",
+  "short_name": "AddReadWeb",
+  "name": "Add To Read Webpage List",
   "share_target": {
-    "action": "/PWA-Add-To-Read-Webpage-List/target.html",
+    "action": "/PWA-Add-To-Read-Webpage-List/index.html",
     "params": {
       "title": "title",
       "text": "text",
       "url": "url"
     }
   },
-  "description": "Web Share Target Demo",
+  "description": "Add To Read Webpage List",
   "icons": [
     {
       "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/generator/android-icon-192x192.png",
@@ -25,7 +25,7 @@
   ],
   "start_url": "/PWA-Add-To-Read-Webpage-List/index.html",
   "background_color": "#f3e5f5",
-  "display": "standalone",
+  "display": "minimal-ui",
   "scope": "/PWA-Add-To-Read-Webpage-List/",
   "theme_color": "#4a148c"
 }
