@@ -19,7 +19,8 @@
     {
       "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/favicon512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/PWA-Add-To-Read-Webpage-List/index.html",
