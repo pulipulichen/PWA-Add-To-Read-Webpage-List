@@ -2,12 +2,10 @@
 <!-- saved from url=(0039)https://web-share.glitch.me/target.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Add to Read Webpage List</title>
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./common.js" defer=""></script>
-    <link rel="manifest" href="./manifest.json">
     
+    <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/generator/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/generator/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/generator/apple-icon-72x72.png">
@@ -25,9 +23,40 @@
     <meta name="msapplication-TileImage" content="assets/favicon/generator/ms-icon-144x144.png">
     <meta name="theme-color" content="#A5673F">
     
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css">
   </head>  
   <body>
+    
+    <div id="information">
+      
+      
+      
+      <div>
+        <button id="buttonInstall"
+          type="button">
+          <img src="./assets/favicon/favicon.png" />
+          <br />
+          Install PWA
+        </button>
+      </div>
+
+      <div>
+        Drag following link to your bookmark:
+        <a href="" id="bookmarklet">
+          <button type="button">
+            AddToReadWeb
+          </button>
+        </a>
+      </div>
+    </div>
+    
+    <div class="loading-layer"
+         id="loadingLayer">
+      <img src="./assets/favicon/favicon.png" />
+    </div>
+    
+    <script src="./service-worker-loader.js" defer=""></script>
     <script src="./script.js"></script>
-    <div id="message"></div>
   </body>
 </html>
