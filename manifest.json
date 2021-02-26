@@ -9,7 +9,7 @@
       "url": "url"
     }
   },
-  "description": "Add To Read Webpage List",
+  "description": "AddReadWeb",
   "icons": [
     {
       "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/generator/android-icon-192x192.png",
