@@ -17,8 +17,8 @@
       "type": "image/png"
     },
     {
-      "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/favicon.png",
-      "sizes": "128x128",
+      "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/favicon512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
