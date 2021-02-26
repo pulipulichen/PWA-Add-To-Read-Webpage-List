@@ -1,6 +1,6 @@
 {
   "short_name": "AddReadWeb",
-  "name": "Add To Read Webpage List",
+  "name": "AddReadWeb",
   "share_target": {
     "action": "/PWA-Add-To-Read-Webpage-List/index.html",
     "params": {
