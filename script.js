@@ -36,7 +36,7 @@ postData(url, {
 //      });
 
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
 //  document.getElementById('href').textContent = window.location.href;
     const parsedUrl = new URL(window.location);
 //  document.getElementById('title').textContent = parsedUrl.searchParams.get('title');
@@ -44,11 +44,12 @@ window.addEventListener('DOMContentLoaded', () => {
 //  document.getElementById('url').textContent = parsedUrl.searchParams.get('url');
   
   if (parsedUrl.searchParams.get('title')) {
-    postData(url, {
+    await postData(url, {
       title: parsedUrl.searchParams.get('title'),
       text: parsedUrl.searchParams.get('text'),
       url: parsedUrl.searchParams.get('url')
     })
+    window.close()
   }
   else {
     document.getElementById('message').innerText = 'Please install PWA'
