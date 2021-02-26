@@ -2,7 +2,7 @@
   "short_name": "Share",
   "name": "Share Target Test",
   "share_target": {
-    "action": "/PWA-Add-To-Read-Webpage-List/index.html",
+    "action": "/PWA-Add-To-Read-Webpage-List/target.html",
     "params": {
       "title": "title",
       "text": "text",
