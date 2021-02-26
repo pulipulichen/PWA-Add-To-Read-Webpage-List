@@ -1,75 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Web Share</title>
-    <meta charset="utf-8">
+<!-- saved from url=(0039)https://web-share.glitch.me/target.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Add to Read Webpage List</title>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="./share.js" defer></script>
-    <script src="./common.js" defer></script>
+    <script src="./common.js" defer=""></script>
     <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#4a148c">
-    
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/generator/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/generator/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/generator/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/generator/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/generator/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/generator/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/generator/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/generator/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/generator/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/generator/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/generator/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/generator/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/generator/favicon-16x16.png">
-    <meta name="msapplication-TileColor" content="#A5673F">
-    <meta name="msapplication-TileImage" content="assets/favicon/generator/ms-icon-144x144.png">
-    <meta name="theme-color" content="#A5673F">
-    
-  </head>  
+    <meta name="theme-color" content="#4a148c"></head>  
   <body>
-    <h1>
-      Pudding Web Share API
-    </h1>
-    <p id="requireHTTPS" class="hidden">
-      <b>STOP!</b> This page <b>must</b> be served over HTTPS.
-      Please <a>reload this page via HTTPS</a>.
-    </p>
-
-    <p>
-      The Web Share API, allows sites to share links and text to other
-      apps via the system provided share picker.
-    </p>
-    
-    <p id="notSupported">
-      <b>Sorry!</b> This browser doesn't support the Web Share API,
-      which required for this demo.
-    </p>  
-    
-<pre>
-const shareOpts = {
-  title: 'Jabberwocky',
-  text: 'Check out this great poem about a Jabberwocky.',
-  url: 'https://en.wikipedia.org/wiki/Jabberwocky',
-};
-navigator.share(shareOpts);
-</pre>
-    
-    <p>
-      <button type="button" id="butShare" disabled>
-        Share
-      </button>
-    </p>
-    
-    <div id="divResult">
-      
-    </div>
+    <script src="./script.js"></script>
+    <div id="message"></div>
   </body>
 </html>
