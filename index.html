@@ -106,7 +106,112 @@
             ></v-text-field>
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="6">
+            <v-btn
+              v-on:click="installPWA"
+              v-bind:class="{'highlight-button': installPWAEvent}"
+              elevation="2"
+              block>
+              Install PWA
+            </v-btn>
+          </v-col>
+          <v-col cols="6"
+                 class="aligned-center">
+            
+            <a v-bind:href="bookmarkletScript"
+               class="bookmarklet-link"
+               v-on:click.stop.prevent="showBookmarkletHint">
+              <button type="button"
+                      class="bookmarklet-button">
+                AddToReadWeb
+              </button>
+            </a>
+            Drag this button to your bookmark
+          </v-col>
+        </v-row>
+        
+        <v-card
+          class="mx-auto author-card"
+          outlined
+        >
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="overline mb-4">
+                About Author
+              </div>
+              <v-list-item-title class="headline mb-1">
+                布丁布丁吃布丁
+              </v-list-item-title>
+              
+              <v-list-item-subtitle>
+                我不是在實驗室，就是在前往實驗室的路上。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+
+            <v-list-item-avatar
+              tile
+              size="80"
+              color="grey"
+              >
+              <img src="./assets/author.png" />
+            </v-list-item-avatar>
+          </v-list-item>
+
+          <v-card-actions>
+            <v-col cols="3">
+              <v-btn
+                depressed
+                block
+                href="http://blog.pulipuli.info/p/donation.html"
+                target="_blank"
+              >
+                <v-icon left>mdi-coffee</v-icon>
+                Donate
+              </v-btn>
+            </v-col>
+              
+            <v-col cols="3">
+            <v-btn
+              depressed
+              block
+              href="https://blog.pulipuli.info"
+              target="_blank"
+            >
+              <v-icon left>mdi-blogger</v-icon>
+              Blog
+            </v-btn>
+            </v-col>
+              
+            <v-col cols="3">
+            <v-btn
+              depressed
+              block
+              href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List"
+              target="_blank"
+            >
+              <v-icon left>mdi-github</v-icon>
+              GitHub
+            </v-btn>
+            </v-col>
+              
+            <v-col cols="3">
+            <v-btn
+              depressed
+              block
+              href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List/issues/new"
+              target="_blank"
+            >
+              <v-icon left>mdi-bug</v-icon>
+              Issue
+            </v-btn>
+            </v-col>
+          </v-card-actions>
+        </v-card>
       </v-container>
+      
+      <!-- ================================================ -->
+      
       <v-container 
         v-if="display === 'submit'"
         fluid>
@@ -125,6 +230,12 @@
               label="Title"
               v-on:focus="countdownSeconds = -1"
             ></v-text-field>
+            <v-select
+              v-model="type"
+              v-bind:items="types"
+              label="Type"
+              solo
+            ></v-select>
             <v-textarea
               label="Note"
               v-model="text"
@@ -134,6 +245,7 @@
               v-on:click="submitToSheetAPI"
               v-bind:class="{'highlight-button': countdownSeconds > 0}"
               elevation="2"
+              v-bind:loading="isSubmiting"
               block>
               <template v-if="countdownSeconds > 0">
                 OK ({{ countdownSeconds }})

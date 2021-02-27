@@ -17,7 +17,7 @@
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
 const RUNTIME = 'runtime';
-const PRECACHE = 'precache-v2021-0225-052225'
+const PRECACHE = 'precache-v2021-0227-054847'
       
 /**
  * How to build cache list?
@@ -28,12 +28,17 @@ const PRECACHE = 'precache-v2021-0225-052225'
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
+  'config.js',
   'index.html',
   'manifest.json',
-  'script.js',
   'service-worker-loader.js',
+  'service-worker.js',
+  'vue-main.js',
+  'assets/author.png',
+  'assets/loading.svg',
   'assets/favicon/e998b79f25201ce68fac0afeae2f1997.ico.zip',
   'assets/favicon/favicon.png',
+  'assets/favicon/favicon512x512.png',
   'assets/favicon/to-do-list.png',
   'assets/favicon/generator/android-icon-144x144.png',
   'assets/favicon/generator/android-icon-192x192.png',
@@ -60,7 +65,9 @@ const PRECACHE_URLS = [
   'assets/favicon/generator/ms-icon-144x144.png',
   'assets/favicon/generator/ms-icon-150x150.png',
   'assets/favicon/generator/ms-icon-310x310.png',
-  'assets/favicon/generator/ms-icon-70x70.png'
+  'assets/favicon/generator/ms-icon-70x70.png',
+  'styles/css/style.css',
+  'vendors/vue/vue.min.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.

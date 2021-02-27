@@ -8,12 +8,13 @@ let app = {
     cacheAttrs: ['sheetAPI', 'waitSeconds', 'sheetAppURL'],
     inited: false,
 
-    
+    types: ['article', 'video'],
     type: 'article',
     text: '',
     title: '',
     url: '',
     display: 'setting',
+    isSubmiting: false,
     
     sheetAPI: '',
     sheetAppURL: '',
@@ -23,7 +24,8 @@ let app = {
     validateSheetAppURLRules: [],
     validateURLRules: [],
     
-    countdownSeconds: -1
+    countdownSeconds: -1,
+    installPWAEvent: null
   },
   mounted: function () {
     this.dataLoad()
@@ -53,8 +55,9 @@ let app = {
       this.url = originalParams.url
       this.title = originalParams.title
 
-      if (this.url) {
+      if (this.url && this.url !== '') {
         this.countdownSeconds = this.waitSeconds
+        //window.alert('countdown! ' + this.url)
         this.startCountdown()
       }
 
@@ -87,6 +90,22 @@ let app = {
     },
     isNeedSetup () {
       return (!this.isSheetAPIValid || !this.isSheetAppURLValid)
+    },
+    isPWAReady () {
+      console.warn('[TODO]')
+      return true
+    },
+    bookmarkletScript () {
+      let width = 400
+      let height = 510
+      let cmd = `javascript: window.open("${location.href}`
+        + `?title=" + document.title.trim() + "&url=" + location.href + "&text=" + window.getSelection(),`
+        + ` '_blank', `
+        + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")`
+      return cmd
+    },
+    showBookmarkletHint () {
+      window.alert('Drag this link to your bookmark')
     }
   },
   watch: {
@@ -197,6 +216,10 @@ let app = {
       return url
     },
     getType(url) {
+      if (!url || url === '') {
+        return 'article'
+      }
+      
       let host = (new URL(url)).host
 
       let UBVideoID = this.getUBVideoID(url)
@@ -341,6 +364,11 @@ let app = {
       ]
     },
     startCountdown () {
+      if (this.isNeedSetup) {
+        this.countdownSeconds = -1
+        return false
+      }
+      
       setTimeout(() => {
         this.countdownSeconds--
         
@@ -353,12 +381,12 @@ let app = {
       }, 1000)
     },
     submitToSheetAPI: async function () {
+      this.isSubmiting = true
       let data = {
         title: this.title,
         url: this.url,
         text: this.text
       }
-      
       await fetch(this.sheetAPI, {
         body: JSON.stringify(data), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -375,10 +403,36 @@ let app = {
       .then(async response => console.log(await response.json())) // 輸出成 json
       
       window.close()
+    },
+    installPWA: async function () {
+      if (!this.installPWAEvent) {
+        return false
+      }
+      
+      this.installPWAEvent.prompt();
+      // Wait for the user to respond to the prompt
+      const {outcome} = await this.installPWAEvent.userChoice;
+      // Optionally, send analytics event with outcome of user choice
+      console.log(`User response to the install prompt: ${outcome}`);
+      // We've used the prompt, and can't use it again, throw it away
+      this.installPWAEvent = null;
+    },
+    setupPWAEvent (e) {
+      this.installPWAEvent = e
     }
   }
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  new Vue(app)
+  app = new Vue(app)
+})
+
+//let deferredPrompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault()
+  // Stash the event so it can be triggered later.
+  //deferredPrompt = e
+  console.log('ok')
+  app.setupPWAEvent(e)
 })
