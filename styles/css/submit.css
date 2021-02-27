@@ -1,20 +1,3 @@
-body {
-  overflow: hidden;
-}
-.toolbar-icon {
-  height: 1rem;
-  width: auto;
-  margin-right: 0.5rem;
-}
-.clickable {
-  cursor: pointer !important;
-}
-.highlight-sheet-api-instruction {
-  background-color: #005caf !important;
-  border-color: #005caf !important;
-  color: white !important;
-  font-weight: bold !important;
-}
 .loading-layer {
   /*display: none;*/
   position: fixed;
@@ -66,4 +49,4 @@ body {
 .confirm-form #addText {
   height: 3rem;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=submit.css.map */

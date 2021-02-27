@@ -1,0 +1,9 @@
+.toolbar-icon {
+  height: 1rem;
+  width: auto;
+  margin-right: 0.5rem;
+}
+.clickable {
+  cursor: pointer !important;
+}
+/*# sourceMappingURL=toolbar.css.map */

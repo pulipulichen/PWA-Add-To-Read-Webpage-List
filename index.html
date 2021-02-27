@@ -26,22 +26,87 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="./styles/css/style.css">
     
-    <link rel="stylesheet" href="./vendors/uikit/css/uikit.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     
-    <script src="./vendors/uikit/js/uikit.min.js"></script>
-    <script src="./vendors/uikit/js/uikit-icons.min.js"></script>
   </head>  
   <body>
     
     <div id="app">
-      <template v-if="display === 'loading'">
-        <img src="assets/loading.svg" />
-      </template>
-      <template v-else>
-        <ul class="uk-tab-bottom" uk-tab>
-          <li v-bind:class="{'uk-active': display === 'setting'}">SETTING</li>
-          <li v-bind:class="{'uk-active': display === 'submit'}">SUBMIT</li>
-        </ul>
+        <v-toolbar
+          color="cyan"
+          dark
+          flat
+          >
+          <v-toolbar-title>
+            
+            <template v-if="display === 'submit'">
+              <img src="./assets/favicon/favicon.png" 
+                 class="toolbar-icon" />
+              Add to Read Webpage List
+            </template>
+            <div v-if="display === 'setting'"
+                 v-on:click="backToSubmit"
+                 v-bind:class="{clickable: (!isNeedSetup && isReceivedFromSharing)}"
+                 >
+              <img src="./assets/favicon/favicon.png" 
+                 class="toolbar-icon" />
+              Setting
+            </div>
+          </v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <v-btn icon 
+                 v-if="display === 'submit'"
+                 v-on:click="display = 'setting'">
+            <v-icon>mdi-cog</v-icon>
+          </v-btn>
+          <v-btn icon 
+                 v-if="display === 'setting' && !isNeedSetup && isReceivedFromSharing"
+                 v-on:click="display = 'submit'">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+
+        </v-toolbar>
+
+      <v-container 
+        v-if="display === 'setting'"
+        fluid
+        >
+        <v-row>
+          <v-col cols="12">
+            <v-btn
+              v-on:click="openSheetAPIInstruction"
+              v-bind:class="{'highlight-sheet-api-instruction': isNeedSetup}"
+              elevation="2"
+              block>
+              Setup Instruction
+            </v-btn>
+            <v-text-field
+              v-model="sheetAPI"
+              label="Sheet API"
+              v-bind:rules="validateSheetAPIRules"
+              hide-details="auto"
+            ></v-text-field>
+            <v-text-field 
+              v-model="waitSeconds" 
+              type="number" 
+              label="Auto submit waiting seconds" 
+              ></v-text-field>
+            <v-text-field
+              v-model="sheetAppURL"
+              label="Sheet APP URL"
+              v-bind:rules="validateSheetAppURLRules"
+              hide-details="auto"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-container>
+      <template v-if="display === 'submit'">
+        Submit
       </template>
     </div>
     
@@ -85,7 +150,8 @@
     <script src="./config.js"></script>
     
     <script src="./vendors/vue/vue.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  
     <script src="./vue-main.js"></script>
     <script src="./service-worker-loader.js" defer=""></script>
     

@@ -2,22 +2,28 @@
 
 let app = {
   el: '#app',
+  vuetify: new Vuetify(),
   data: {
     cacheKey: 'add-to-read-webpage-list',
-    cacheAttrs: ['sheetAPI', 'waitSeconds'],
+    cacheAttrs: ['sheetAPI', 'waitSeconds', 'sheetAppURL'],
     inited: false,
 
     
     type: 'article',
     text: '',
-    display: 'loading',
+    display: 'setting',
     
-    sheetAPI: undefined,
-    waitSeconds: 5
+    sheetAPI: '',
+    sheetAppURL: '',
+    waitSeconds: 5,
+    
+    validateSheetAPIRules: [],
+    validateSheetAppURLRules: []
   },
   mounted: function () {
     this.dataLoad()
     
+    this.setupValidateRules()
     this.initDisplay()
     
     this.inited = true
@@ -32,10 +38,10 @@ let app = {
         url: params.get('url'),
         text: params.get('text'),
       }
-
-      originalParams.title = this.getTitleFromParams(params)
-      originalParams.text = this.getTextFromParams(params)
-      originalParams.url = this.getURLFromParams(params)
+      
+      originalParams.title = this.getTitleFromParams(originalParams)
+      originalParams.text = this.getTextFromParams(originalParams)
+      originalParams.url = this.getURLFromParams(originalParams)
 
       return originalParams
     },
@@ -43,7 +49,29 @@ let app = {
       return !this.isReceivedFromSharing
     },
     isReceivedFromSharing() {
-      return (this.searchParams.title && this.searchParams.url)
+      //console.log(this.searchParams)
+      return (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== '')
+    },
+    isSheetAPIValid () {
+      return this.validateSheetAPI(this.sheetAPI)
+    },
+    isSheetAppURLValid () {
+      return this.validateSheetAppURL(this.sheetAppURL)
+    },
+    isMobilePWA () {
+      const isStandalone = window.matchMedia('(display-mode: minimal-ui)').matches;
+      if (document.referrer.startsWith('android-app://')) {
+        //return 'twa';
+        return true
+      } else if (navigator.standalone || isStandalone) {
+        //return 'minimal-ui';
+        return true
+      }
+      //return 'browser';
+      return false
+    },
+    isNeedSetup () {
+      return (!this.isSheetAPIValid || !this.isSheetAppURLValid)
     }
   },
   watch: {
@@ -58,7 +86,10 @@ let app = {
     },
     waitSeconds () {
       this.dataSave()
-    }
+    },
+    sheetAppURL () {
+      this.dataSave()
+    },
   },
   methods: {
     dataLoad () {
@@ -130,7 +161,11 @@ let app = {
         return ''
       }
 
-      return params.text.trim()
+      if (params.text) {
+        return params.text.trim()
+      }
+
+      return ''
     },
     getURLFromParams(params) {
       if (params.url) {
@@ -228,15 +263,59 @@ let app = {
       return 'article'
     },
     initDisplay () {
-      if (!this.sheetAPI) {
+      //console.log(this.isReceivedFromSharing)
+      if (this.isNeedSetup) {
         this.display = 'setting'
       }
       else if (this.isReceivedFromSharing) {
         this.display = 'submit'
       }
-      this.display = 'setting'
+      else {
+        this.display = 'setting'
+      }
     },
-     
+    backToSubmit () {
+      if (this.isNeedSetup || !this.isReceivedFromSharing) {
+        return false
+      }
+      
+      this.display = 'submit'
+    },
+    validateSheetAPI (url) {
+      // 'https://script.google.com/macros/s/<ID>/exec'
+      return (url
+        && url.startsWith('https://script.google.com/macros/s/')
+        && url.endsWith('/exec'))
+    },
+    validateSheetAppURL (url) {
+      return true
+    },
+    openSheetAPIInstruction () {
+      let url = 'https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/document/sheet-api.md'
+      //if (this.isMobilePWA) {
+      //}
+      window.open(url, '_system')
+    },
+    setupValidateRules () {
+      
+      this.validateSheetAPIRules = [
+        (value) => {
+          if (!this.validateSheetAPI(value)) {
+            return `Incorrect Sheet API. Example: 'https://script.google.com/macros/s/<ID>/exec'`
+          }
+          return true
+        }
+      ]
+
+      this.validateSheetAppURLRules = [
+        (value) => {
+          if (!this.validateSheetAppURL(value)) {
+            return `Incorrect Sheet APP URL. Example: '!!!!!!'`
+          }
+          return true
+        }
+      ]
+    }
   }
 }
 

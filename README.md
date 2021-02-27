@@ -7,6 +7,9 @@ https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/
 
 https://chodounsky.com/2019/03/24/progressive-web-application-as-a-share-option-in-android/
 
+PWA:
+https://web.dev/customize-install/
+
 # ICON
 
 - https://www.iconninja.com/todo-icon-642692
