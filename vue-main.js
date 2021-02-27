@@ -385,7 +385,8 @@ let app = {
       let data = {
         title: this.title,
         url: this.url,
-        text: this.text
+        text: this.text,
+        type: this.type
       }
       await fetch(this.sheetAPI, {
         body: JSON.stringify(data), // must match 'Content-Type' header
