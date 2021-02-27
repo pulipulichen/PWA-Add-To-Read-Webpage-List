@@ -16,8 +16,8 @@ let app = {
     display: 'setting',
     isSubmiting: false,
     
-    sheetAPI: '',
-    sheetAppURL: '',
+    sheetAPI: 'https://script.google.com/macros/s/AKfycbzDb9jHAK9FyoBpEPTZVHLLyeJy_uFhItwStp-kugjbeQInM1CKalX0/exec',
+    sheetAppURL: 'https://www.appsheet.com/start/3e9b9b68-2fec-4e07-84b8-041d7e7d1c68 ',
     waitSeconds: 5,
     
     validateSheetAPIRules: [],
