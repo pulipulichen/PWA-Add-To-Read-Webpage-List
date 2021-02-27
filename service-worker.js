@@ -28,7 +28,6 @@ const PRECACHE = 'precache-v2021-0227-234847'
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-  'config.js',
   'index.html',
   'manifest.json',
   'service-worker-loader.js',
