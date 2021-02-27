@@ -246,6 +246,13 @@ let app = {
 
       return 'article'
     },
+    openSheetAppURL () {
+      if (!this.isSheetAppURLValid) {
+        return false
+      }
+      
+      window.open(this.sheetAppURL, '_system')
+    },
     getUBVideoID(url) {
 
       if (!url) {

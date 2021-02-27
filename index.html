@@ -107,10 +107,12 @@
               label="Sheet APP URL"
               v-bind:rules="validateSheetAppURLRules"
               hide-details="auto"
+              append-outer-icon="mdi-open-in-new"
+              @click:append-outer="openSheetAppURL"
               ></v-text-field>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="!isMobilePWA">
           <v-col cols="6">
             <v-btn
               v-on:click="installPWA"
@@ -134,7 +136,7 @@
             Drag this button to your bookmark
           </v-col>
         </v-row>
-
+        
         <v-card
           class="mx-auto author-card"
           outlined
