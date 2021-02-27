@@ -55,10 +55,19 @@
          id="loadingLayer">
       <img src="./assets/favicon/favicon.png" />
       <br />
-      APP will close after adding successful.
+      <div class="confirm-form">
+        <div id="addTitle"></div>
+        <select id="addType">
+          <option value="article" selected="selected">Article</option>
+          <option value="video">Video</option>
+        </select>
+        <textarea id="addText"></textarea>
+        <button type="button" id="addOK">OK</button>
+      </div>
     </div>
     
     <script src="./service-worker-loader.js" defer=""></script>
+    <script src="./config.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
