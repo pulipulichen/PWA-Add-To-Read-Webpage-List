@@ -136,6 +136,18 @@
             Drag this button to your bookmark
           </v-col>
         </v-row>
+        <v-row v-if="isMobilePWA">
+          <v-col cols="12">
+            <v-btn
+              class="highlight-button"
+              v-bind:href="sheetAppURL"
+              target="_blank"
+              elevation="2"
+              block>
+              Open Sheet APP
+            </v-btn>
+          </v-col>
+        </v-row>
         
         <v-card
           class="mx-auto author-card"
