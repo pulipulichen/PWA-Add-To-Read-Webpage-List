@@ -46,12 +46,15 @@ let app = {
         text: params.get('text'),
       }
       
-      window.alert(JSON.stringify(originalParams))
+      //window.alert('調整前:' + JSON.stringify(originalParams))
       
       originalParams.title = this.getTitleFromParams(originalParams)
-      originalParams.text = this.getTextFromParams(originalParams)
       originalParams.url = this.getURLFromParams(originalParams)
-
+      originalParams.text = this.getTextFromParams(originalParams)
+      
+      
+      //window.alert('調整後:' + JSON.stringify(originalParams))
+      
       this.text = originalParams.text
       this.type = this.getType(originalParams.url)
       this.url = originalParams.url
@@ -70,7 +73,7 @@ let app = {
     },
     isReceivedFromSharing() {
       //console.log(this.searchParams)
-      window.alert(JSON.stringify(this.searchParams))
+      //window.alert(JSON.stringify(this.searchParams))
       return (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== '')
     },
     isSheetAPIValid () {
@@ -94,10 +97,10 @@ let app = {
     isNeedSetup () {
       return (!this.isSheetAPIValid || !this.isSheetAppURLValid)
     },
-    isPWAReady () {
-      console.warn('[TODO]')
-      return true
-    },
+//    isPWAReady () {
+//      console.warn('[TODO]')
+//      return true
+//    },
     bookmarkletScript () {
       let width = 400
       let height = 510
@@ -203,12 +206,14 @@ let app = {
         return params.url
       }
       let text = params.text
+//      window.alert('text: ' + text)
       if (!text) {
         return undefined
       }
       text = text.trim()
       
       if (this.validateURL(text)) {
+//        window.alert('is text: ' + text)
         return text
       }
       return this.extracURLfromString(text)
@@ -304,7 +309,7 @@ let app = {
     },
     initDisplay () {
       //console.log(this.isReceivedFromSharing)
-      window.alert(this.isReceivedFromSharing)
+      //window.alert(this.isReceivedFromSharing)
       if (this.isNeedSetup) {
         this.display = 'setting'
       }
@@ -340,6 +345,8 @@ let app = {
      * @returns {Boolean}
      */
     validateURL (str) {
+      return true
+      
       var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
         '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
