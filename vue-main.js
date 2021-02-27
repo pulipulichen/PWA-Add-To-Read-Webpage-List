@@ -68,6 +68,7 @@ let app = {
     },
     isReceivedFromSharing() {
       //console.log(this.searchParams)
+      window.alert(JSON.stringify(this.searchParams))
       return (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== '')
     },
     isSheetAPIValid () {
@@ -77,7 +78,7 @@ let app = {
       return this.validateSheetAppURL(this.sheetAppURL)
     },
     isMobilePWA () {
-      const isStandalone = window.matchMedia('(display-mode: minimal-ui)').matches;
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
       if (document.referrer.startsWith('android-app://')) {
         //return 'twa';
         return true
@@ -296,6 +297,7 @@ let app = {
     },
     initDisplay () {
       //console.log(this.isReceivedFromSharing)
+      window.alert(this.isReceivedFromSharing)
       if (this.isNeedSetup) {
         this.display = 'setting'
       }
@@ -320,19 +322,31 @@ let app = {
         && url.endsWith('/exec'))
     },
     validateSheetAppURL (url) {
-      console.warn('[TODO]')
-      return true
+      //console.warn('[TODO]')
+      //https://www.appsheet.com/start/3e9b9b68-2fec-4e07-84b8-041d7e7d1c68 
+      
+      return url.startsWith('https://www.appsheet.com/start/')
     },
-    validateURL (url) {
-      console.warn('[TODO]')
-      return true
+    /**
+     * https://stackoverflow.com/a/5717133/6645399
+     * @param {type} str
+     * @returns {Boolean}
+     */
+    validateURL (str) {
+      var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      return !!pattern.test(str);
     },
-    openSheetAPIInstruction () {
-      let url = 'https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/document/sheet-api.md'
-      //if (this.isMobilePWA) {
-      //}
-      window.open(url, '_system')
-    },
+//    openSheetAPIInstruction () {
+//      let url = 'https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/document/sheet-api.md'
+//      //if (this.isMobilePWA) {
+//      //}
+//      window.open(url, '_system')
+//    },
     setupValidateRules () {
       
       this.validateSheetAPIRules = [

@@ -4,7 +4,7 @@
     <title>AddReadWeb</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/generator/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/generator/apple-icon-60x60.png">
@@ -22,10 +22,10 @@
     <meta name="msapplication-TileColor" content="#A5673F">
     <meta name="msapplication-TileImage" content="assets/favicon/generator/ms-icon-144x144.png">
     <meta name="theme-color" content="#A5673F">
-    
+
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="./styles/css/style.css">
-    
+
     <link href="./vendors/vuetify/google-fonts.css" rel="stylesheet">
     <!--
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -33,47 +33,47 @@
     <link href="./vendors/vuetify/materialdesignicons.min.css" rel="stylesheet">
     <link href="./vendors/vuetify/mdi-icon.css" rel="stylesheet">
     <link href="./vendors/vuetify/vuetify.min.css" rel="stylesheet">
-    
+
   </head>  
   <body>
-    
+
     <div id="app">
-        <v-toolbar
-          color="cyan"
-          dark
-          flat
-          >
-          <v-toolbar-title>
-            
-            <template v-if="display === 'submit'">
-              <img src="./assets/favicon/favicon.png" 
+      <v-toolbar
+        color="cyan"
+        dark
+        flat
+        >
+        <v-toolbar-title>
+
+          <template v-if="display === 'submit'">
+            <img src="./assets/favicon/favicon.png" 
                  class="toolbar-icon" />
-              Add to Read Webpage List
-            </template>
-            <div v-if="display === 'setting'"
-                 v-on:click="backToSubmit"
-                 v-bind:class="{clickable: (!isNeedSetup && isReceivedFromSharing)}"
-                 >
-              <img src="./assets/favicon/favicon.png" 
+            Add to Read Webpage List
+          </template>
+          <div v-if="display === 'setting'"
+               v-on:click="backToSubmit"
+               v-bind:class="{clickable: (!isNeedSetup && isReceivedFromSharing)}"
+               >
+            <img src="./assets/favicon/favicon.png" 
                  class="toolbar-icon" />
-              Setting
-            </div>
-          </v-toolbar-title>
+            Setting
+          </div>
+        </v-toolbar-title>
 
-          <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-          <v-btn icon 
-                 v-if="display === 'submit'"
-                 v-on:click="display = 'setting'; countdownSeconds = -1">
-            <v-icon>mdi-cog</v-icon>
-          </v-btn>
-          <v-btn icon 
-                 v-if="display === 'setting' && !isNeedSetup && isReceivedFromSharing"
-                 v-on:click="display = 'submit'">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
+        <v-btn icon 
+               v-if="display === 'submit'"
+               v-on:click="display = 'setting'; countdownSeconds = -1">
+          <v-icon>mdi-cog</v-icon>
+        </v-btn>
+        <v-btn icon 
+               v-if="display === 'setting' && !isNeedSetup && isReceivedFromSharing"
+               v-on:click="display = 'submit'">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
 
-        </v-toolbar>
+      </v-toolbar>
 
       <v-container 
         v-if="display === 'setting'"
@@ -82,7 +82,8 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              v-on:click="openSheetAPIInstruction"
+              href="https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/document/sheet-api.md"
+              target="_system"
               v-bind:class="{'highlight-button': isNeedSetup}"
               elevation="2"
               block>
@@ -94,7 +95,7 @@
               label="Sheet API"
               v-bind:rules="validateSheetAPIRules"
               hide-details="auto"
-            ></v-text-field>
+              ></v-text-field>
             <v-text-field 
               v-model="waitSeconds" 
               type="number" 
@@ -106,7 +107,7 @@
               label="Sheet APP URL"
               v-bind:rules="validateSheetAppURLRules"
               hide-details="auto"
-            ></v-text-field>
+              ></v-text-field>
           </v-col>
         </v-row>
         <v-row>
@@ -121,7 +122,7 @@
           </v-col>
           <v-col cols="6"
                  class="aligned-center">
-            
+
             <a v-bind:href="bookmarkletScript"
                class="bookmarklet-link"
                v-on:click.stop.prevent="showBookmarkletHint">
@@ -133,11 +134,11 @@
             Drag this button to your bookmark
           </v-col>
         </v-row>
-        
+
         <v-card
           class="mx-auto author-card"
           outlined
-        >
+          >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="overline mb-4">
@@ -146,7 +147,7 @@
               <v-list-item-title class="headline mb-1">
                 布丁布丁吃布丁
               </v-list-item-title>
-              
+
               <v-list-item-subtitle>
                 我不是在實驗室，就是在前往實驗室的路上。
               </v-list-item-subtitle>
@@ -168,53 +169,53 @@
                 block
                 href="http://blog.pulipuli.info/p/donation.html"
                 target="_blank"
-              >
+                >
                 <v-icon left>mdi-coffee</v-icon>
                 Donate
               </v-btn>
             </v-col>
-              
+
             <v-col cols="3">
-            <v-btn
-              depressed
-              block
-              href="https://blog.pulipuli.info"
-              target="_blank"
-            >
-              <v-icon left>mdi-blogger</v-icon>
-              Blog
-            </v-btn>
+              <v-btn
+                depressed
+                block
+                href="https://blog.pulipuli.info"
+                target="_blank"
+                >
+                <v-icon left>mdi-blogger</v-icon>
+                Blog
+              </v-btn>
             </v-col>
-              
+
             <v-col cols="3">
-            <v-btn
-              depressed
-              block
-              href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List"
-              target="_blank"
-            >
-              <v-icon left>mdi-github</v-icon>
-              GitHub
-            </v-btn>
+              <v-btn
+                depressed
+                block
+                href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List"
+                target="_blank"
+                >
+                <v-icon left>mdi-github</v-icon>
+                GitHub
+              </v-btn>
             </v-col>
-              
+
             <v-col cols="3">
-            <v-btn
-              depressed
-              block
-              href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List/issues/new"
-              target="_blank"
-            >
-              <v-icon left>mdi-bug</v-icon>
-              Issue
-            </v-btn>
+              <v-btn
+                depressed
+                block
+                href="https://github.com/pulipulichen/PWA-Add-To-Read-Webpage-List/issues/new"
+                target="_blank"
+                >
+                <v-icon left>mdi-bug</v-icon>
+                Issue
+              </v-btn>
             </v-col>
           </v-card-actions>
         </v-card>
       </v-container>
-      
+
       <!-- ================================================ -->
-      
+
       <v-container 
         v-if="display === 'submit'"
         fluid>
@@ -227,23 +228,23 @@
               v-on:focus="countdownSeconds = -1"
               v-bind:rules="validateURLRules"
               hide-details="auto"
-            ></v-text-field>
+              ></v-text-field>
             <v-text-field
               v-model="title"
               label="Title"
               v-on:focus="countdownSeconds = -1"
-            ></v-text-field>
+              ></v-text-field>
             <v-select
               v-model="type"
               v-bind:items="types"
               label="Type"
               solo
-            ></v-select>
+              ></v-select>
             <v-textarea
               label="Note"
               v-model="text"
               v-on:focus="countdownSeconds = -1"
-            ></v-textarea>
+              ></v-textarea>
             <v-btn
               v-on:click="submitToSheetAPI"
               v-bind:class="{'highlight-button': countdownSeconds > 0}"
@@ -261,7 +262,7 @@
         </v-row>
       </v-container >
     </div>
-    
+
     <!--
     <div id="information">
       <div>
@@ -298,12 +299,12 @@
       </div>
     </div>
     -->
-     
+
     <script src="./vendors/vue/vue.min.js"></script>
     <script src="./vendors/vuetify/vuetify.min.js"></script>
-  
+
     <script src="./vue-main.js"></script>
     <script src="./service-worker-loader.js" defer=""></script>
-    
+
   </body>
 </html>

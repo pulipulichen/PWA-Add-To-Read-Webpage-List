@@ -25,7 +25,7 @@
   ],
   "start_url": "/PWA-Add-To-Read-Webpage-List/index.html",
   "background_color": "#f3e5f5",
-  "display": "minimal-ui",
+  "display": "standalone",
   "scope": "/PWA-Add-To-Read-Webpage-List/",
   "theme_color": "#4a148c"
 }
