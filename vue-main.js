@@ -52,7 +52,7 @@ let app = {
       originalParams.url = this.getURLFromParams(originalParams)
       originalParams.text = this.getTextFromParams(originalParams)
       
-      
+      console.log(originalParams)
       //window.alert('調整後:' + JSON.stringify(originalParams))
       
       this.text = originalParams.text
@@ -226,10 +226,14 @@ let app = {
       var urlRegex = /(http[s]?:\/\/[^ ]*)/;
 
       var url = string.match(urlRegex)[1];
+      console.log(url)
       return url
     },
     getType(url) {
       if (!url || url === '') {
+        return 'article'
+      }
+      if (!this.validateURL(url)) {
         return 'article'
       }
       
@@ -352,7 +356,7 @@ let app = {
      * @returns {Boolean}
      */
     validateURL (str) {
-      return true
+      //return true
       
       var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name

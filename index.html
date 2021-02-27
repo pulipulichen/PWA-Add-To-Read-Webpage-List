@@ -247,19 +247,32 @@
               v-model="text"
               v-on:focus="countdownSeconds = -1"
               ></v-textarea>
-            <v-btn
-              v-on:click="submitToSheetAPI"
-              v-bind:class="{'highlight-button': countdownSeconds > 0}"
-              elevation="2"
-              v-bind:loading="isSubmiting"
-              block>
-              <template v-if="countdownSeconds > 0">
-                OK ({{ countdownSeconds }})
-              </template>
-              <template v-else>
-                OK
-              </template>
-            </v-btn>
+            <v-row>
+              <v-col cols="6">
+                <v-btn
+                  v-on:click="window.close()"
+                  elevation="2"
+                  block>
+                  CANCEL
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn
+                  v-on:click="submitToSheetAPI"
+                  v-bind:class="{'highlight-button': countdownSeconds > 0}"
+                  elevation="2"
+                  v-bind:loading="isSubmiting"
+                  block>
+                  <template v-if="countdownSeconds > 0">
+                    OK ({{ countdownSeconds }})
+                  </template>
+                  <template v-else>
+                    OK
+                  </template>
+                </v-btn>
+              </v-col>
+            </v-row>
+                
           </v-col>
         </v-row>
       </v-container >
