@@ -255,7 +255,7 @@ let app = {
         return false
       }
       
-      window.open(this.sheetAppURL, '_system')
+      window.open(this.sheetAppURL, '_blank')
     },
     getUBVideoID(url) {
 
