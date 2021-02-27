@@ -61,7 +61,7 @@
 
           <v-btn icon 
                  v-if="display === 'submit'"
-                 v-on:click="display = 'setting'">
+                 v-on:click="display = 'setting'; countdownSeconds = -1">
             <v-icon>mdi-cog</v-icon>
           </v-btn>
           <v-btn icon 
@@ -80,12 +80,13 @@
           <v-col cols="12">
             <v-btn
               v-on:click="openSheetAPIInstruction"
-              v-bind:class="{'highlight-sheet-api-instruction': isNeedSetup}"
+              v-bind:class="{'highlight-button': isNeedSetup}"
               elevation="2"
               block>
               Setup Instruction
             </v-btn>
             <v-text-field
+              type="url"
               v-model="sheetAPI"
               label="Sheet API"
               v-bind:rules="validateSheetAPIRules"
@@ -97,6 +98,7 @@
               label="Auto submit waiting seconds" 
               ></v-text-field>
             <v-text-field
+              type="url"
               v-model="sheetAppURL"
               label="Sheet APP URL"
               v-bind:rules="validateSheetAppURLRules"
@@ -105,9 +107,44 @@
           </v-col>
         </v-row>
       </v-container>
-      <template v-if="display === 'submit'">
-        Submit
-      </template>
+      <v-container 
+        v-if="display === 'submit'"
+        fluid>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              type="url"
+              v-model="url"
+              label="URL"
+              v-on:focus="countdownSeconds = -1"
+              v-bind:rules="validateURLRules"
+              hide-details="auto"
+            ></v-text-field>
+            <v-text-field
+              v-model="title"
+              label="Title"
+              v-on:focus="countdownSeconds = -1"
+            ></v-text-field>
+            <v-textarea
+              label="Note"
+              v-model="text"
+              v-on:focus="countdownSeconds = -1"
+            ></v-textarea>
+            <v-btn
+              v-on:click="submitToSheetAPI"
+              v-bind:class="{'highlight-button': countdownSeconds > 0}"
+              elevation="2"
+              block>
+              <template v-if="countdownSeconds > 0">
+                OK ({{ countdownSeconds }})
+              </template>
+              <template v-else>
+                OK
+              </template>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container >
     </div>
     
     <!--

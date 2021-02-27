@@ -11,6 +11,8 @@ let app = {
     
     type: 'article',
     text: '',
+    title: '',
+    url: '',
     display: 'setting',
     
     sheetAPI: '',
@@ -18,7 +20,10 @@ let app = {
     waitSeconds: 5,
     
     validateSheetAPIRules: [],
-    validateSheetAppURLRules: []
+    validateSheetAppURLRules: [],
+    validateURLRules: [],
+    
+    countdownSeconds: -1
   },
   mounted: function () {
     this.dataLoad()
@@ -42,6 +47,16 @@ let app = {
       originalParams.title = this.getTitleFromParams(originalParams)
       originalParams.text = this.getTextFromParams(originalParams)
       originalParams.url = this.getURLFromParams(originalParams)
+
+      this.text = originalParams.text
+      this.type = this.getType(originalParams.url)
+      this.url = originalParams.url
+      this.title = originalParams.title
+
+      if (this.url) {
+        this.countdownSeconds = this.waitSeconds
+        this.startCountdown()
+      }
 
       return originalParams
     },
@@ -75,12 +90,6 @@ let app = {
     }
   },
   watch: {
-    'searchParams.text' (text) {
-      this.text = text
-    },
-    'searchParams.url' (url) {
-      this.type = this.getType(url)
-    },
     sheetAPI () {
       this.dataSave()
     },
@@ -288,6 +297,11 @@ let app = {
         && url.endsWith('/exec'))
     },
     validateSheetAppURL (url) {
+      console.warn('[TODO]')
+      return true
+    },
+    validateURL (url) {
+      console.warn('[TODO]')
       return true
     },
     openSheetAPIInstruction () {
@@ -310,11 +324,57 @@ let app = {
       this.validateSheetAppURLRules = [
         (value) => {
           if (!this.validateSheetAppURL(value)) {
+            console.warn('[TODO]')
             return `Incorrect Sheet APP URL. Example: '!!!!!!'`
           }
           return true
         }
       ]
+      
+      this.validateURLRules = [
+        (value) => {
+          if (!this.validateURL(value)) {
+            return `Incorrect URL.`
+          }
+          return true
+        }
+      ]
+    },
+    startCountdown () {
+      setTimeout(() => {
+        this.countdownSeconds--
+        
+        if (this.countdownSeconds > 0) {
+          this.startCountdown()
+        }
+        else if (this.countdownSeconds === 0) {
+          this.submitToSheetAPI()
+        }
+      }, 1000)
+    },
+    submitToSheetAPI: async function () {
+      let data = {
+        title: this.title,
+        url: this.url,
+        text: this.text
+      }
+      
+      await fetch(this.sheetAPI, {
+        body: JSON.stringify(data), // must match 'Content-Type' header
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        //credentials: 'same-origin', // include, same-origin, *omit
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        //mode: 'cors', // no-cors, cors, *same-origin
+        //redirect: 'follow', // manual, *follow, error
+        //referrer: 'no-referrer', // *client, no-referrer
+      })
+      //.error(message => console.log(message))
+      .then(async response => console.log(await response.json())) // 輸出成 json
+      
+      window.close()
     }
   }
 }
