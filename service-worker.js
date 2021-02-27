@@ -17,7 +17,7 @@
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
 const RUNTIME = 'runtime';
-const PRECACHE = 'precache-v2021-0227-234847'
+const PRECACHE = 'precache-v2021-0227-114139'
       
 /**
  * How to build cache list?
@@ -35,7 +35,6 @@ const PRECACHE_URLS = [
   'vue-main.js',
   'assets/author.png',
   'assets/loading.svg',
-  'assets/favicon/e998b79f25201ce68fac0afeae2f1997.ico.zip',
   'assets/favicon/favicon.png',
   'assets/favicon/favicon512x512.png',
   'assets/favicon/to-do-list.png',
@@ -66,7 +65,17 @@ const PRECACHE_URLS = [
   'assets/favicon/generator/ms-icon-310x310.png',
   'assets/favicon/generator/ms-icon-70x70.png',
   'styles/css/style.css',
-  'vendors/vue/vue.min.js'
+  'vendors/vue/vue.min.js',
+  'vendors/vuetify/google-fonts.css',
+  'vendors/vuetify/materialdesignicons.min.css',
+  'vendors/vuetify/mdi-icon.css',
+  'vendors/vuetify/vuetify.min.css',
+  'vendors/vuetify/vuetify.min.js',
+  'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.eot',
+  'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.ttf',
+  'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.woff',
+  'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.woff2',
+  'vendors/vuetify/mdi-icon/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
 ];
 
 // The install handler takes care of precaching the resources we always need.
