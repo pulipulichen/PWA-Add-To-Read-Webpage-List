@@ -310,7 +310,7 @@ let app = {
     initDisplay () {
       //console.log(this.isReceivedFromSharing)
       //window.alert(this.isReceivedFromSharing)
-      if (this.isNeedSetup) {
+      if (this.isNeedSetup) { 
         this.display = 'setting'
       }
       else if (this.isReceivedFromSharing) {
