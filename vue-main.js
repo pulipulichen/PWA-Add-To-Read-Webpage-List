@@ -46,6 +46,8 @@ let app = {
         text: params.get('text'),
       }
       
+      window.alert(JSON.stringify(originalParams))
+      
       originalParams.title = this.getTitleFromParams(originalParams)
       originalParams.text = this.getTextFromParams(originalParams)
       originalParams.url = this.getURLFromParams(originalParams)
