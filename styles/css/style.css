@@ -1,0 +1,55 @@
+body {
+  overflow: hidden;
+}
+.loading-layer {
+  /*display: none;*/
+  position: fixed;
+  z-index: 999;
+  text-align: center;
+  background-color: #FFF;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.loading-layer img {
+  width: 50px;
+  height: 50px;
+}
+@media all and (display-mode: minimal-ui) {
+  .loading-layer {
+    display: block;
+  }
+  #bookmarklet {
+    display: none;
+  }
+}
+#buttonInstall {
+  display: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+#bookmarklet,
+#information {
+  display: block;
+  text-align: center;
+}
+.confirm-form #addTitle {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.confirm-form #addType,
+.confirm-form #addText,
+.confirm-form #addOK {
+  width: 100%;
+}
+.confirm-form #addOK img {
+  width: 1rem;
+  height: 1rem;
+}
+.confirm-form #addText {
+  height: 3rem;
+}
+/*# sourceMappingURL=style.css.map */

@@ -24,14 +24,29 @@
     <meta name="theme-color" content="#A5673F">
     
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/css/style.css">
+    
+    <link rel="stylesheet" href="./vendors/uikit/css/uikit.min.css" />
+    
+    <script src="./vendors/uikit/js/uikit.min.js"></script>
+    <script src="./vendors/uikit/js/uikit-icons.min.js"></script>
   </head>  
   <body>
     
+    <div id="app">
+      <template v-if="display === 'loading'">
+        <img src="assets/loading.svg" />
+      </template>
+      <template v-else>
+        <ul class="uk-tab-bottom" uk-tab>
+          <li v-bind:class="{'uk-active': display === 'setting'}">SETTING</li>
+          <li v-bind:class="{'uk-active': display === 'submit'}">SUBMIT</li>
+        </ul>
+      </template>
+    </div>
+    
+    <!--
     <div id="information">
-      
-      
-      
       <div>
         <button id="buttonInstall"
           type="button">
@@ -65,9 +80,14 @@
         <button type="button" id="addOK">OK</button>
       </div>
     </div>
-    
-    <script src="./service-worker-loader.js" defer=""></script>
+    -->
+     
     <script src="./config.js"></script>
-    <script src="./script.js"></script>
+    
+    <script src="./vendors/vue/vue.min.js"></script>
+    
+    <script src="./vue-main.js"></script>
+    <script src="./service-worker-loader.js" defer=""></script>
+    
   </body>
 </html>
