@@ -206,6 +206,11 @@ let app = {
       if (!text) {
         return undefined
       }
+      text = text.trim()
+      
+      if (this.validateURL(text)) {
+        return text
+      }
       return this.extracURLfromString(text)
     },
     extracURLfromString(string) {
