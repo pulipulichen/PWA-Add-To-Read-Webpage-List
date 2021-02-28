@@ -3,11 +3,16 @@
   "name": "AddReadWeb",
   "share_target": {
     "action": "/PWA-Add-To-Read-Webpage-List/index.html",
-    "method":"GET",
     "params": {
       "title": "title",
       "text": "text",
-      "url": "url"
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": ["*"]
+        }
+      ]
     }
   },
   "description": "AddReadWeb",
