@@ -273,6 +273,7 @@
                   v-on:click="submitToSheetAPI"
                   v-bind:class="{'highlight-button': countdownSeconds > 0}"
                   elevation="2"
+                  v-bind:disabled ="isSubmitDisabled"
                   v-bind:loading="isSubmiting"
                   block>
                   <template v-if="countdownSeconds > 0">

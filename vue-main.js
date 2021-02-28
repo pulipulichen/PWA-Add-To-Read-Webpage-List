@@ -74,7 +74,8 @@ let app = {
     isReceivedFromSharing() {
       //console.log(this.searchParams)
       //window.alert(JSON.stringify(this.searchParams))
-      return (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== '')
+      return ((typeof(this.searchParams.title) === 'string' && this.searchParams.title !== '') 
+              || (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== ''))
     },
     isSheetAPIValid () {
       return this.validateSheetAPI(this.sheetAPI)
@@ -112,6 +113,10 @@ let app = {
     },
     showBookmarkletHint () {
       window.alert('Drag this link to your bookmark')
+    },
+    isSubmitDisabled () {
+      return !(this.title && this.title !== '' 
+              && this.url && this.url !== '')
     }
   },
   watch: {
@@ -237,7 +242,15 @@ let app = {
         return 'article'
       }
       
-      let host = (new URL(url)).host
+      let host
+      
+      try {
+        host = (new URL(url)).host
+      }
+      catch (e) {
+        console.error(e)
+        return 'article'
+      }
 
       let UBVideoID = this.getUBVideoID(url)
       if ((host === 'www.youtube.com'
@@ -420,6 +433,10 @@ let app = {
       }, 1000)
     },
     submitToSheetAPI: async function () {
+      if (thhis.isSubmitDisabled) {
+        return false
+      }
+      
       this.isSubmiting = true
       let data = {
         title: this.title,
