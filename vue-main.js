@@ -16,6 +16,8 @@ let app = {
     display: 'setting',
     isSubmiting: false,
     
+    noTitle: '(No Title)',
+    
     sheetAPI: 'https://script.google.com/macros/s/AKfycbzDb9jHAK9FyoBpEPTZVHLLyeJy_uFhItwStp-kugjbeQInM1CKalX0/exec',
     sheetAppURL: 'https://www.appsheet.com/start/3e9b9b68-2fec-4e07-84b8-041d7e7d1c68',
     waitSeconds: 5,
@@ -74,7 +76,7 @@ let app = {
     isReceivedFromSharing() {
       //console.log(this.searchParams)
       //window.alert(JSON.stringify(this.searchParams))
-      return ((typeof(this.searchParams.title) === 'string' && this.searchParams.title !== '') 
+      return ((typeof(this.searchParams.title) === 'string' && this.searchParams.title !== '' && this.searchParams.title !== this.noTitle) 
               || (typeof(this.searchParams.url) === 'string' && this.searchParams.url !== ''))
     },
     isSheetAPIValid () {
@@ -105,8 +107,10 @@ let app = {
     bookmarkletScript () {
       let width = 400
       let height = 510
-      let cmd = `javascript: window.open("${location.href}`
-        + `?title=" + document.title.trim() + "&url=" + location.href + "&text=" + window.getSelection(),`
+      let cmd = `javascript: let title, text = ''; if (window.getSelection()) {title = window.getSelection().trim(); text = document.title.trim()}`
+        + `else {title = document.title.trim()}`
+        + `window.open("${location.href}`
+        + `?title=" + title + "&url=" + location.href + "&text=" + text,`
         + ` '_blank', `
         + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")`
       return cmd
@@ -115,7 +119,7 @@ let app = {
       window.alert('Drag this link to your bookmark')
     },
     isSubmitDisabled () {
-      return !(this.title && this.title !== '' 
+      return !(this.title && this.title !== '' && this.title !== this.noTitle
               && this.url && this.url !== '')
     }
   },
@@ -183,7 +187,7 @@ let app = {
       } else if (params.url) {
         return params.url
       }
-      return 'No Title'
+      return this.noTitle
     },
     getTextFromParams(params) {
       if (params.text === params.url) {
@@ -433,7 +437,7 @@ let app = {
       }, 1000)
     },
     submitToSheetAPI: async function () {
-      if (thhis.isSubmitDisabled) {
+      if (this.isSubmitDisabled) {
         return false
       }
       

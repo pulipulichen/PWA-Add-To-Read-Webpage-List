@@ -15,7 +15,9 @@
       ]
     }
   },
-  "description": "AddReadWeb",
+  "description": "Add To Read Webpage List",
+  "version": "1.0",
+  "manifest_version": 2,
   "icons": [
     {
       "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/generator/android-icon-192x192.png",
@@ -32,6 +34,5 @@
   "start_url": "/PWA-Add-To-Read-Webpage-List/index.html",
   "background_color": "#f3e5f5",
   "display": "standalone",
-  "scope": "/PWA-Add-To-Read-Webpage-List/",
-  "theme_color": "#4a148c"
+  "scope": "/PWA-Add-To-Read-Webpage-List/"  
 }
