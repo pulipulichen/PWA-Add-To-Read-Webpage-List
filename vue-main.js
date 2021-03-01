@@ -221,6 +221,11 @@ let app = {
       if (title === params.text) {
         return ''
       }
+      
+      if (title + '\n' + url === params.text
+              || title + '.\n' + url === params.text) {
+        return ''
+      }
 
       if (params.text) {
         return params.text.trim()
