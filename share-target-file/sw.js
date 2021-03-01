@@ -15,9 +15,9 @@ addEventListener('fetch', event => {
         return;
     }
 
-//    if (event.request.url.startsWith('https://justmarkup.com/demos/web-share-target-image-to-grayscale/upload') === false) {
-//        return;
-//    }
+    if (event.request.url.startsWith('https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/share-target-file/upload') === false) {
+        return;
+    }
 
     event.respondWith(Response.redirect('https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/share-target-file/output.html'));
     event.waitUntil(async function() {

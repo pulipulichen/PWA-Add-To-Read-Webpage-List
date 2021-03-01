@@ -54,6 +54,7 @@ let app = {
       originalParams.title = this.filterTitle(originalParams.title)
       originalParams.url = this.getURLFromParams(originalParams)
       originalParams.text = this.getTextFromParams(originalParams)
+      originalParams.text = this.filterText(originalParams.text)
       
       console.log(originalParams)
       //window.alert('調整後:' + JSON.stringify(originalParams))
@@ -199,6 +200,12 @@ let app = {
       else {
         return title
       }
+    },
+    filterText (text) {
+      if (text.endsWith('透過Hermit發送 • https://hermit.news')) {
+        text = text.slice(0, text.lastIndexOf('\n'))
+      }
+      return text.trim()
     },
     getTextFromParams(params) {
       if (params.text === params.url) {
