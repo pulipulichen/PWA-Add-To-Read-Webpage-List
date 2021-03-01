@@ -51,6 +51,7 @@ let app = {
       //window.alert('調整前:' + JSON.stringify(originalParams))
       
       originalParams.title = this.getTitleFromParams(originalParams)
+      originalParams.title = this.filterTitle(originalParams.title)
       originalParams.url = this.getURLFromParams(originalParams)
       originalParams.text = this.getTextFromParams(originalParams)
       
@@ -188,6 +189,16 @@ let app = {
         return params.url
       }
       return this.noTitle
+    },
+    filterTitle (title) {
+      // '在 YouTube 上觀看「'
+      if (title.startsWith('在 YouTube 上觀看「')
+              && title.endsWith('」')) {
+        return title.slice(14, title.length - 1)
+      }
+      else {
+        return title
+      }
     },
     getTextFromParams(params) {
       if (params.text === params.url) {
