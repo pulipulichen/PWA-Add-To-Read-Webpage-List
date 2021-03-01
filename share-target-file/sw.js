@@ -15,11 +15,11 @@ addEventListener('fetch', event => {
         return;
     }
 
-    if (event.request.url.startsWith('https://justmarkup.com/demos/web-share-target-image-to-grayscale/upload') === false) {
-        return;
-    }
+//    if (event.request.url.startsWith('https://justmarkup.com/demos/web-share-target-image-to-grayscale/upload') === false) {
+//        return;
+//    }
 
-    event.respondWith(Response.redirect('https://justmarkup.com/demos/web-share-target-image-to-grayscale/output.html'));
+    event.respondWith(Response.redirect('https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/share-target-file/output.html'));
     event.waitUntil(async function() {
         const data = await event.request.formData();
         const client = await self.clients.get(event.resultingClientId || event.clientId);
