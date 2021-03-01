@@ -25,6 +25,12 @@ addEventListener('fetch', event => {
         const client = await self.clients.get(event.resultingClientId || event.clientId);
 
         const file = data.get('file');
-        client.postMessage({ file, action: 'load-image' });
+        client.postMessage({ 
+          file, 
+          action: 'load-image',
+          title: data.get('title'),
+          text: data.get('text'),
+          url: data.get('url'),
+        });
     }());
 });

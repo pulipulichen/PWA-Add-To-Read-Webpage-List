@@ -58,6 +58,12 @@
                 });
                 navigator.serviceWorker.onmessage = function(event) {
 
+                    window.alert(JSON.stringify({
+                      title: event.data.title,
+                      text: event.data.text,
+                      url: event.data.url
+                    }))
+
                     const imageBlob = event.data.file;
                     const image = document.getElementById('image');
                     image.src = URL.createObjectURL(imageBlob);
