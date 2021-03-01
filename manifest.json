@@ -6,18 +6,10 @@
     "params": {
       "title": "title",
       "text": "text",
-      "url": "url",
-      "files": [
-        {
-          "name": "files",
-          "accept": ["*"]
-        }
-      ]
+      "url": "url"
     }
   },
   "description": "Add To Read Webpage List",
-  "version": "1.0",
-  "manifest_version": 2,
   "icons": [
     {
       "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/generator/android-icon-192x192.png",

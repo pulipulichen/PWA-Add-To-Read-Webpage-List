@@ -19,6 +19,10 @@ function genericOnClick(info, tab) {
   var url, title, text = '';
   
   url = info.pageUrl;
+  if (!url) {
+    url = tab.url
+  }
+  
   if (info.selectionText) {
     title = info.selectionText;
     text = tab.title.trim();
