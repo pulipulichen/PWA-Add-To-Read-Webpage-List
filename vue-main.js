@@ -197,6 +197,10 @@ let app = {
               && title.endsWith('」')) {
         return title.slice(14, title.length - 1)
       }
+      else if (title.startsWith('立即體驗「')
+              && title.endsWith('」')) {
+        return title.slice(5, title.length - 1)
+      }
       else {
         return title
       }
