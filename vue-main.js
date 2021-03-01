@@ -232,9 +232,12 @@ let app = {
         return undefined
       }
       
+      string = string.split('\n').join(' ').trim()
+      
       var urlRegex = /(http[s]?:\/\/[^ ]*)/;
 
       var url = string.match(urlRegex)[1];
+      url = url.trim()
       console.log(url)
       return url
     },
