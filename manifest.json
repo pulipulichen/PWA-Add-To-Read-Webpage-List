@@ -2,7 +2,7 @@
   "short_name": "AddReadWeb",
   "name": "AddReadWeb",
   "share_target": {
-    "action": "/PWA-Add-To-Read-Webpage-List/index.html",
+    "action": "./index.html",
     "params": {
       "title": "title",
       "text": "text",
@@ -12,19 +12,19 @@
   "description": "Add To Read Webpage List",
   "icons": [
     {
-      "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/generator/android-icon-192x192.png",
+      "src": "./assets/favicon/generator/android-icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/PWA-Add-To-Read-Webpage-List/assets/favicon/favicon512x512.png",
+      "src": "./assets/favicon/favicon512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/PWA-Add-To-Read-Webpage-List/index.html",
+  "start_url": "./index.html",
   "background_color": "#f3e5f5",
   "display": "standalone",
-  "scope": "/PWA-Add-To-Read-Webpage-List/"  
+  "scope": "./"  
 }
