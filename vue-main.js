@@ -296,7 +296,11 @@ let app = {
               || host === 'youtu.be'
               || host === 'm.youtube.be') && UBVideoID) {
         return 'video'
-      } else if (this.getFacebookVideoID(url)) {
+      } 
+      else if (this.getFacebookVideoID(url)) {
+        return 'video'
+      }
+      else if (url.endsWith('.mp3') || url.endsWith('.ogg') || url.endsWith('.mp4') || url.endsWith('.wav')) {
         return 'video'
       }
 
