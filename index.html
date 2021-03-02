@@ -291,7 +291,7 @@
             
         <v-row>
           <v-col cols="3"
-                 v-if="isMobilePWA && navigator.share">
+                 v-if="navigator.share">
             <v-btn
               v-on:click="shareToSystem"
               v-bind:disabled="!(hasTitle || isURLValid)"
@@ -329,7 +329,7 @@
             </v-btn>
           </v-col>
           <v-col cols="3"
-                 v-if="!(isMobilePWA && navigator.share)">
+                 v-if="!(navigator.share)">
             <v-btn
               v-on:click="exit"
               v-bind:href="shareToPlurk"
