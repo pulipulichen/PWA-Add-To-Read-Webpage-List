@@ -33,7 +33,7 @@ function genericOnClick(info, tab) {
   var width = 400;
   var height = 580;
       
-  var shareTargetURL = "https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/index.html" + "?title=" + title + "&url=" + url + "&text=" + text
+  var shareTargetURL = "https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/index.html" + "?title=" + encodeURIComponent(title) + "&url=" + url + "&text=" + encodeURIComponent(text)
 
   window.open(shareTargetURL
         , "_blank"

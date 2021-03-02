@@ -126,10 +126,16 @@ let app = {
     bookmarkletScript () {
       let width = 400
       let height = 580
+      
+      let baseURL = location.href
+      if (baseURL.indexOf('?')) {
+        baseURL = baseURL.slice(0, baseURL.indexOf('?'))
+      }
+      
       let cmd = `javascript: (() => {let title, text = ''; if (window.getSelection() && window.getSelection().trim) {title = window.getSelection().trim(); text = document.title.trim()}`
         + `else {title = document.title.trim()}`
-        + `window.open("${location.href}`
-        + `?title=" + title + "&url=" + location.href + "&text=" + text,`
+        + `window.open("${baseURL}`
+        + `?title=" + encodeURIComponent(title) + "&url=" + location.href + "&text=" + encodeURIComponent(text),`
         + ` '_blank', `
         + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")})()`
       return cmd
