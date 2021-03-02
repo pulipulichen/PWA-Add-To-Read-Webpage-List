@@ -27,7 +27,10 @@ let app = {
     validateURLRules: [],
     
     countdownSeconds: -1,
-    installPWAEvent: null
+    installPWAEvent: null,
+    preventAutoCountdown: false,
+    
+    isDoShare: false
   },
   mounted: function () {
     this.dataLoad()
@@ -36,6 +39,11 @@ let app = {
     this.initDisplay()
     
     this.inited = true
+    
+    if (this.isDoShare && navigator.share) {
+      this.shareToSystem()
+    }
+    
   },
   computed: {
     searchParams() {
@@ -46,6 +54,11 @@ let app = {
         title: params.get('title'),
         url: params.get('url'),
         text: params.get('text'),
+        share: params.get('share'),
+      }
+      
+      if (originalParams.share && originalParams.share.toLowerCase() !== 'false') {
+        this.isDoShare = true
       }
       
       //window.alert('調整前:' + JSON.stringify(originalParams))
@@ -56,7 +69,7 @@ let app = {
       originalParams.text = this.getTextFromParams(originalParams)
       originalParams.text = this.filterText(originalParams.text)
       
-      console.log(originalParams)
+      //console.log(originalParams)
       //window.alert('調整後:' + JSON.stringify(originalParams))
       
       this.text = originalParams.text
@@ -108,13 +121,13 @@ let app = {
 //    },
     bookmarkletScript () {
       let width = 400
-      let height = 510
-      let cmd = `javascript: let title, text = ''; if (window.getSelection()) {title = window.getSelection().trim(); text = document.title.trim()}`
+      let height = 580
+      let cmd = `javascript: (() => {let title, text = ''; if (window.getSelection() && window.getSelection().trim) {title = window.getSelection().trim(); text = document.title.trim()}`
         + `else {title = document.title.trim()}`
         + `window.open("${location.href}`
         + `?title=" + title + "&url=" + location.href + "&text=" + text,`
         + ` '_blank', `
-        + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")`
+        + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")})()`
       return cmd
     },
     showBookmarkletHint () {
@@ -123,8 +136,80 @@ let app = {
     isSubmitDisabled () {
       return !(this.title && this.title !== '' && this.title !== this.noTitle
               && this.url && this.url !== '')
+    },
+    isURLValid () {
+      return this.validateURL(this.url)
+    },
+    shareToEmail () {
+      let body = []
+      if (this.isURLValid) {
+        body.push(this.url)
+      }
+      if (this.text && this.text !== '') {
+        body.push(this.text)
+      }
+      return `mailto:?subject=${this.title}&body=${body.join('\n')}`
+    },
+    shareToTwitter () {
+      let twitterBody = []
+      if (this.title && this.title !== '' && this.title !== this.noTitle) {
+        twitterBody.push(this.title)
+      }
+      if (this.text && this.text !== '') {
+        twitterBody.push(this.text)
+      }
+
+      twitterBody = encodeURIComponent(twitterBody.join(' '))
+
+      return `https://twitter.com/intent/tweet?text=${twitterBody}&url=${this.url}&related=`
+    },
+    hasTitle () {
+      return (this.title && this.title !== '' && this.title !== this.noTitle)
+    }, 
+    hasText () {
+      return (this.text && this.text !== '')
+    }, 
+    shareToFacebook () {
+      
+      if (!this.isURLValid) {
+        return undefined
+      }
+      
+      return `https://www.facebook.com/sharer/sharer.php?u=` + encodeURIComponent(this.url)
+    },
+    shareToPlurk () {
+      let body = []
+      if (this.hasTitle) {
+        body.push(this.title)
+      }
+      if (this.hasText) {
+        body.push(this.text)
+      }
+      if (this.isURLValid) {
+        body.push(this.url)
+      }
+
+      body = encodeURIComponent(body.join(' '))
+
+      return `http://www.plurk.com/?qualifier=shares&status=` + body
+    },
+    shareToPlurk () {
+      let body = []
+      if (this.hasTitle) {
+        body.push(this.title)
+      }
+      if (this.hasText) {
+        body.push(this.text)
+      }
+      if (this.isURLValid) {
+        body.push(this.url)
+      }
+
+      body = encodeURIComponent(body.join(' '))
+
+      return `http://www.plurk.com/?qualifier=shares&status=` + body
     }
-  },
+  }, 
   watch: {
     sheetAPI () {
       this.dataSave()
@@ -459,6 +544,10 @@ let app = {
       ]
     },
     startCountdown () {
+      if (this.preventAutoCountdown) {
+        return false
+      }
+      
       if (this.isNeedSetup) {
         this.countdownSeconds = -1
         return false
@@ -519,6 +608,35 @@ let app = {
     },
     setupPWAEvent (e) {
       this.installPWAEvent = e
+    },
+//    shareToAddThis (service) {
+//      // http://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=pulipuli&s=facebook&source=msd-1.0&url=http://blog.pulipuli.info/2020/04/google-chrome-how-to-make-google-chrome.html&title=%E5%A6%82%E4%BD%95%E8%AE%93Google%20Chrome%E9%96%8B%E5%95%9F%E6%99%82%E5%B0%B1%E4%BD%94%E6%BB%BF%E6%95%B4%E5%80%8B%E8%9E%A2%E5%B9%95%E4%B8%A6%E9%9A%B1%E8%97%8F%E6%8E%A7%E5%88%B6%E4%BB%8B%E9%9D%A2%EF%BC%9F%20/%C2%A0How%20to%20make%20Google%20Chrome%20open%20to%20fill%20the%20entire%20screen%20and%20hide%20the%20control%20interface?&ate=AT-pulipuli/-/per-13/-/4&frommenu=1&ips=1&uud=1&ct=1&pre=http%3A%2F%2Fblog.pulipuli.info%2F&tt=0&captcha_provider=nucaptcha&pro=1
+//      
+//      if (service === 'twitter') {
+//        
+//      }
+//      
+//      
+//      return `http://www.addthis.com/bookmark.php?v=300&winname=addthis&s=${service}&source=msd-1.0&url=${this.url}&title=${this.title}&ate=AT-pulipuli/-/per-13/-/4&frommenu=1&ips=1&uud=1&ct=1&tt=0&captcha_provider=nucaptcha&pro=1`
+//    },
+    shareToSystem: async function () {
+      // 判斷瀏覽器是否支援 Web Share API
+      if (navigator.share) {
+        // navigator.share 會回傳 Promise
+        
+        await navigator.share({
+          title: this.title,
+          text: this.text,
+          url: this.url,
+        })
+        window.close()
+      }
+      else {
+        window.alert('Cannot share')
+      }
+    },
+    exit () {
+      window.close()
     }
   }
 }

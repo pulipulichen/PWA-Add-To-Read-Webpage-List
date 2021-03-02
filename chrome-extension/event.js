@@ -31,7 +31,7 @@ function genericOnClick(info, tab) {
     title = tab.title.trim();
   }
   var width = 400;
-  var height = 510;
+  var height = 580;
       
   var shareTargetURL = "https://pulipulichen.github.io/PWA-Add-To-Read-Webpage-List/index.html" + "?title=" + title + "&url=" + url + "&text=" + text
 

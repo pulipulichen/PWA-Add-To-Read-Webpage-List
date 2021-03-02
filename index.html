@@ -285,12 +285,64 @@
                 </v-btn>
               </v-col>
             </v-row>
-                
           </v-col>
         </v-row>
+            
+        <v-row>
+          <v-col cols="3"
+                 v-if="isMobilePWA && navigator.share">
+            <v-btn
+              v-on:click="shareToSystem"
+              v-bind:disabled="!(hasTitle || isURLValid)"
+              block>
+              <v-icon>mdi-share</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="3">
+            <v-btn
+              v-on:click="exit"
+              v-bind:href="shareToEmail"
+              target="_system"
+              block>
+              <v-icon>mdi-email</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="3">
+            <v-btn
+              v-on:click="exit"
+              v-bind:href="shareToFacebook"
+              target="_system"
+              v-bind:disabled="!isURLValid"
+              block>
+              <v-icon>mdi-facebook</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="3">
+            <v-btn
+              v-on:click="exit"
+              v-bind:href="shareToTwitter"
+              target="_system"
+              v-bind:disabled="!isURLValid"
+              block>
+              <v-icon>mdi-twitter</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="3"
+                 v-if="!(isMobilePWA && navigator.share)">
+            <v-btn
+              v-on:click="exit"
+              v-bind:href="shareToPlurk"
+              target="_system"
+              v-bind:disabled="!(hasTitle || hasText || isURLValid)"
+              block>
+              <v-icon>mdi-alpha-p-circle</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+        
       </v-container >
     </div>
-
+    
     <!--
     <div id="information">
       <div>
