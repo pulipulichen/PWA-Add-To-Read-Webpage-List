@@ -43,7 +43,6 @@ let app = {
     if (this.isDoShare && navigator.share) {
       this.shareToSystem()
     }
-    
   },
   computed: {
     searchParams() {
@@ -624,7 +623,7 @@ let app = {
       // 判斷瀏覽器是否支援 Web Share API
       if (navigator.share) {
         // navigator.share 會回傳 Promise
-        
+        window.alert('share to system')
         await navigator.share({
           title: this.title,
           text: this.text,
