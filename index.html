@@ -259,7 +259,8 @@
               v-model="text"
               v-on:focus="countdownSeconds = -1"
               ></v-textarea>
-            <v-row>
+            
+            <v-row v-if="!isDoShare">
               <v-col cols="6">
                 <v-btn
                   v-on:click="window.close()"

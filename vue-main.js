@@ -59,6 +59,7 @@ let app = {
       
       if (originalParams.share && originalParams.share.toLowerCase() !== 'false') {
         this.isDoShare = true
+        this.preventAutoCountdown = true
       }
       
       //window.alert('調整前:' + JSON.stringify(originalParams))
