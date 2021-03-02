@@ -40,6 +40,10 @@ let app = {
     
     this.inited = true
     
+    window.alert(JSON.stringify({
+      doShare: this.isDoShare,
+      nav: (typeof navigator.share)
+    }))
     if (this.isDoShare && navigator.share) {
       this.shareToSystem()
     }
