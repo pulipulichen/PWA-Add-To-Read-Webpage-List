@@ -2,7 +2,7 @@
   "manifest_version": 2,  
   "name": "Add to read webpage list",  
   "description": "Extension to create a context menu to add current webpage to read webpage list.",  
-  "version": "2.0",  
+  "version": "2.1",  
   "permissions": [
     "activeTab", "contextMenus"
   ],  
