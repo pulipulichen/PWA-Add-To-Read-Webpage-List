@@ -1,4 +1,6 @@
 const vueData = {
+  version: '20210306',
+  
   cacheKey: 'add-to-read-webpage-list',
   cacheAttrs: ['sheetAPI', 'waitSeconds', 'sheetAppURL', 'tags'],
   inited: false,
