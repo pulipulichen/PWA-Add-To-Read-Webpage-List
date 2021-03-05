@@ -16,7 +16,7 @@ let app = {
     display: 'setting',
     isSubmiting: false,
     
-    noTitle: '(No Title)',
+    noTitle: '',
     
     sheetAPI: 'https://script.google.com/macros/s/AKfycbzDb9jHAK9FyoBpEPTZVHLLyeJy_uFhItwStp-kugjbeQInM1CKalX0/exec',
     sheetAppURL: 'https://www.appsheet.com/start/3e9b9b68-2fec-4e07-84b8-041d7e7d1c68',
@@ -125,7 +125,7 @@ let app = {
 //    },
     bookmarkletScript () {
       let width = 400
-      let height = 580
+      let height = 610
       
       let baseURL = location.href
       if (baseURL.indexOf('?')) {
@@ -135,7 +135,7 @@ let app = {
       let cmd = `javascript: (() => {let title, text = ''; if (window.getSelection() && window.getSelection().trim) {title = window.getSelection().trim(); text = document.title.trim()}`
         + `else {title = document.title.trim()}`
         + `window.open("${baseURL}`
-        + `?title=" + encodeURIComponent(title) + "&url=" + location.href + "&text=" + encodeURIComponent(text),`
+        + `?title=" + encodeURIComponent(title) + "&url=" + location.href + "&text=" + encodeURIComponent(text) + "&length=" + document.body.innerText.replace(/ /g, '').length,`
         + ` '_blank', `
         + `"scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height}")})()`
       return cmd
