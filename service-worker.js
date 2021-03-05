@@ -17,7 +17,7 @@
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
 const RUNTIME = 'runtime';
-const PRECACHE = 'precache-v2021-0227-1141505'
+const PRECACHE = 'precache-v2021-0227-1141507'
       
 /**
  * How to build cache list?
@@ -32,7 +32,12 @@ const PRECACHE_URLS = [
   'manifest.json',
   'service-worker-loader.js',
   'service-worker.js',
-  'vue-main.js',
+  'scripts/vue-computed.js',
+  'scripts/vue-data.js',
+  'scripts/vue-main.js',
+  'scripts/vue-methods.js',
+  'scripts/vue-mounted.js',
+  'scripts/vue-watch.js',
   'assets/author.png',
   'assets/loading.svg',
   'assets/favicon/favicon.png',
@@ -75,7 +80,9 @@ const PRECACHE_URLS = [
   'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.ttf',
   'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.woff',
   'vendors/vuetify/materialdesignicons-webfont/materialdesignicons-webfont.woff2',
-  'vendors/vuetify/mdi-icon/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2'
+  'vendors/vuetify/mdi-icon/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2',
+  'vendors/ub-utils/ub-iframe-api.js',
+  'vendors/ub-utils/ub-utils.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.

@@ -260,6 +260,36 @@
               v-on:focus="countdownSeconds = -1"
               ></v-textarea>
             
+            <v-row>
+              <v-col cols="4">
+                <v-checkbox
+                  v-model="tags"
+                  label="Archive"
+                  value="Archive"
+                  v-on:focus="countdownSeconds = -1"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="4">
+                <v-checkbox
+                  v-model="tags"
+                  label="Action"
+                  value="Action"
+                  v-on:focus="countdownSeconds = -1"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="4">
+                <v-checkbox
+                  v-model="tags"
+                  label="Share"
+                  value="Share"
+                  v-on:focus="countdownSeconds = -1"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+            
             <v-row v-if="!isDoShare">
               <v-col cols="6">
                 <v-btn
@@ -384,8 +414,18 @@
 
     <script src="./vendors/vue/vue.min.js"></script>
     <script src="./vendors/vuetify/vuetify.min.js"></script>
+    
+    <script src="vendors/ub-utils/ub-iframe-api.js"></script>
+    <script src="vendors/ub-utils/ub-utils.js"></script>
 
-    <script src="./vue-main.js"></script>
+    <script src="./scripts/vue-computed.js"></script>
+    <script src="./scripts/vue-data.js"></script>
+    <script src="./scripts/vue-methods.js"></script>
+    <script src="./scripts/vue-mounted.js"></script>
+    <script src="./scripts/vue-watch.js"></script>
+    
+    <script src="./scripts/vue-main.js"></script>
+    
     <script src="./service-worker-loader.js" defer=""></script>
 
   </body>
