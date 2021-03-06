@@ -182,6 +182,19 @@ const vueMethods = {
     if (url.indexOf('user/', 5) === 0) { // 1.
       return false
     }
+    
+    let host
+
+    try {
+      host = (new URL(url)).host
+      // https://youtu.be/NJd3mojU6-w
+      
+      if (this.ubList.indexOf(host) === -1) {
+        return false
+      }
+    } catch (e) {
+      return false
+    }
 
     //if ( preg_match('/^[a-zA-Z0-9\-\_]{11}$/', $url)) { // 2.
     //return $url;
@@ -351,7 +364,7 @@ const vueMethods = {
       duration: this.duration
     }
     
-//    alert(JSON.stringify(data))
+    //alert(JSON.stringify(data))
 //    return
     
     

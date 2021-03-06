@@ -1,5 +1,5 @@
 const vueData = {
-  version: '20210306',
+  version: '20210306-1438',
   
   cacheKey: 'add-to-read-webpage-list',
   cacheAttrs: ['sheetAPI', 'waitSeconds', 'sheetAppURL', 'tags'],
@@ -33,5 +33,11 @@ const vueData = {
   
   titleExclusiveList: [
     'Google 新聞 -'
+  ],
+  ubList: [
+    'yo' + 'ut' + 'ube',
+    'www.yo' + 'ut' + 'ube',
+    'm.yo' + 'ut' + 'ube',
+    'yo' + 'utu.be'
   ]
 }

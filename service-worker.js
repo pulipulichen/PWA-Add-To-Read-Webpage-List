@@ -17,7 +17,7 @@
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
 const RUNTIME = 'runtime';
-const PRECACHE = 'precache-v2021-0227-1141508'
+const PRECACHE = 'precache-v2021-0227-1141509'
       
 /**
  * How to build cache list?
