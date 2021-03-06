@@ -171,7 +171,7 @@ const vueMethods = {
       return false
     }
 
-    window.open(this.sheetAppURL, '_blank')
+    window.open(this.sheetAppURL, '_system')
   },
   getUBVideoID(url) {
 
@@ -442,6 +442,15 @@ const vueMethods = {
     return ''
   },
   exit() {
+    window.close()
+  },
+  openURLAndClose () {
+    if (window.opener) {
+      window.opener.focus()
+    }
+    else {
+      window.open(this.url, '_system')
+    }
     window.close()
   }
 }

@@ -242,11 +242,14 @@
               v-on:focus="countdownSeconds = -1"
               v-bind:rules="validateURLRules"
               hide-details="auto"
+              append-outer-icon="mdi-open-in-new"
+              @click:append-outer="openURLAndClose"
               ></v-text-field>
             <v-text-field
               v-model="title"
               label="Title"
-              v-on:focus="countdownSeconds = -1"
+              v-on:focus="countdownSeconds = -1;"
+              onfocus="this.select()"
               ></v-text-field>
             <v-select
               v-model="type"
@@ -256,6 +259,7 @@
               ></v-select>
             <v-textarea
               label="Note"
+              onfocus="this.select()"
               v-model="text"
               v-on:focus="countdownSeconds = -1"
               ></v-textarea>
