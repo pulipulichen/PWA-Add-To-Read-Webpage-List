@@ -36,6 +36,8 @@ const vueData = {
   ],
   ubList: [
     'yo' + 'ut' + 'ube',
+    'www.yo' + 'ut' + 'ube.com',
+    'm.yo' + 'ut' + 'ube.com',
     'www.yo' + 'ut' + 'ube',
     'm.yo' + 'ut' + 'ube',
     'yo' + 'utu.be'

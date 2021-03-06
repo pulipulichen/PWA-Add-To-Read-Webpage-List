@@ -21,3 +21,7 @@ https://web.dev/customize-install/
 ## UI Framework
 
 - https://vuetifyjs.com/en/components/buttons/
+
+# Chrome Extension
+
+https://chrome.google.com/webstore/devconsole/
