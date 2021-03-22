@@ -54,7 +54,6 @@ const vueComputed = {
           this.startCountdown()
         }
       })()
-        
     }
     else if (this.url && this.url !== '') {
       this.countdownSeconds = this.waitSeconds
